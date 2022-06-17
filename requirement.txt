@@ -1,0 +1,8 @@
+tianshou==0.4.1
+pyyaml
+gym==0.18.3
+pandas
+matplotlib
+scipy
+gym[atari]
+opencv-python

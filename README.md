@@ -21,6 +21,8 @@ Note that our implementation highly relies on ``tianshou==0.4.1``.
 bash scripts/hyper_dqn/run_atari.sh
 ```
 
+Training results can be found in the ``results`` folder.
+
 
 ## Bibtex
 ```

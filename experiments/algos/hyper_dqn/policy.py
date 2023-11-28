@@ -32,11 +32,11 @@ class HyperDQNPolicy(DQNPolicy):
         self._num_train_iter = num_train_iter
         self._noise_scale = noise_scale
         self._l2_norm = l2_norm
-
+        self._l2_norm_old = l2_norm
         self._z_train = None
         self._z_test = None
 
-    def set_prior_scale(self, prior_scale: float):
+    def set_prior_scale(self, prior_scale: float, env_step: int = None):
         if hasattr(self.model, "prior_model"):
             self.model.prior_scale = prior_scale
             self.model_old.prior_scale = prior_scale
@@ -45,6 +45,8 @@ class HyperDQNPolicy(DQNPolicy):
             self.model_old.hypermodel.prior_scale = prior_scale
         else:
             raise NotImplementedError
+        if env_step:
+            self._l2_norm = self._l2_norm_old / (env_step + 1)
 
     def forward(
         self,
